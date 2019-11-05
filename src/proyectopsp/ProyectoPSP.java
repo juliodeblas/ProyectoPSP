@@ -70,7 +70,7 @@ class PelotaHilos implements Runnable {
 
 }
 
-//Movimiento de la pelota-----------------------------------------------------------------------------------------
+//Movimiento de la pelota
 class Pelota {
 
     // Mueve la pelota invirtiendo posición si choca con límites
@@ -132,7 +132,7 @@ class Pelota {
 
 }
 
-// Lámina que dibuja las pelotas----------------------------------------------------------------------
+// Lámina que dibuja las pelotas
 class LaminaPelota extends JPanel {
 
     //Añadimos pelota a la lámina
@@ -157,7 +157,7 @@ class LaminaPelota extends JPanel {
     private ArrayList<Pelota> pelotas = new ArrayList<Pelota>();
 }
 
-//Marco con lámina y botones------------------------------------------------------------------------------
+//Marco con lámina y botones
 class MarcoRebote extends JFrame {
 
     public MarcoRebote() {
@@ -172,8 +172,8 @@ class MarcoRebote extends JFrame {
 
         JPanel laminaBotones = new JPanel();
 
-        //Dibuja botón de añadir pelotas
-        ponerBoton(laminaBotones, "Dale!", new ActionListener() {
+        //Dibuja botón de añadir pelotas(añdir hilos)
+        ponerBoton(laminaBotones, "Nuevo hilo", new ActionListener() {
 
             public void actionPerformed(ActionEvent evento) {
 
@@ -207,7 +207,7 @@ class MarcoRebote extends JFrame {
         add(laminaBotones, BorderLayout.SOUTH);
     }
 
-    //Ponemos botones
+    //Método para poner los botones
     public void ponerBoton(Container c, String titulo, ActionListener oyente) {
 
         JButton boton = new JButton(titulo);
@@ -218,7 +218,7 @@ class MarcoRebote extends JFrame {
 
     }
 
-    //Añade pelota 
+    //Añade pelota(nuevo hilo) 
     public void comienza_el_juego() {
 
         Pelota pelota = new Pelota();
@@ -233,6 +233,7 @@ class MarcoRebote extends JFrame {
 
     }
 
+    //Detiene la última pelota lanzada (último hilo)
     public void detener() {
 
         hilo.interrupt();
