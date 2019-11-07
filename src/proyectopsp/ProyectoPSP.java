@@ -12,6 +12,7 @@ import javax.swing.*;
 import java.util.*;
 import java.awt.*;
 import java.awt.event.*;
+import java.io.IOException;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
@@ -160,6 +161,7 @@ class LaminaPelota extends JPanel {
 //Marco con lámina y botones
 class MarcoRebote extends JFrame {
 
+    
     public MarcoRebote() {
 
         setBounds(600, 300, 400, 350);
@@ -178,6 +180,14 @@ class MarcoRebote extends JFrame {
             public void actionPerformed(ActionEvent evento) {
 
                 comienza_el_juego();
+                
+                ProcessBuilder proceso = new ProcessBuilder("notepad.exe");
+                
+                try {
+                    Process p = proceso.start();
+                } catch (IOException ex) {
+                    System.out.println("Error al lanzar el proceso");
+                }
             }
 
         });
@@ -188,7 +198,8 @@ class MarcoRebote extends JFrame {
             public void actionPerformed(ActionEvent evento) {
 
                 System.exit(0);
-
+                
+                
             }
 
         });
@@ -200,11 +211,20 @@ class MarcoRebote extends JFrame {
 
                 detener();
 
+                ProcessBuilder procesoSalir = new ProcessBuilder("taskkill /F /IM notepad.exe");
+                
+                
+                try {
+                    Process pSalir = procesoSalir.start();
+                } catch (IOException ex) {
+                    System.out.println("Error al cerrar el proceso");
+                }
             }
 
         });
 
         add(laminaBotones, BorderLayout.SOUTH);
+        
     }
 
     //Método para poner los botones
